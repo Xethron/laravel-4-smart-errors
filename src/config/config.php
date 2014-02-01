@@ -31,4 +31,7 @@ return array(
 	// The PHP date() format that should be used. Leave as null for default
 	// Default: Y-m-d H:i:s e
 	'date-format' => null,
+
+	// Should Database Queries be logged?
+	'log-queries' => false,
 );

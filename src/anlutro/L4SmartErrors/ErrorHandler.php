@@ -39,13 +39,16 @@ class ErrorHandler
 		$url = Request::fullUrl();
 		$client = Request::getClientIp();
 
-		$logstr = "Uncaught Exception (handled by L4SmartErrors)\nURL: $url -- Route: $route -- Client: $client\n" . $exception;
+		$logstr = "Uncaught Exception (handled by L4SmartErrors)\nURL: $url -- Route: $route -- Client: $client\n";
+		$logstr .= \Xethron\L4ToString::exception( $exception );
 
 		// get any input and log it
 		$input = Request::all();
 		if (!empty($input)) {
 			$logstr .= 'Input: ' . json_encode($input);
 		}
+
+		if ( Config::get('smarterror::log-queries') ) $logstr .= "MySQL Queries:\n". \Xethron\L4ToString::queryLog();
 
 		Log::error($logstr);
 

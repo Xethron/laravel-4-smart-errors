@@ -17,7 +17,7 @@
 </p>
 
 <p><b>Stack trace</b></p>
-<p><pre style="white-space:pre-wrap;">{{ nl2br($exception->getTraceAsString()) }}</pre></p>
+<p><pre style="white-space:pre-wrap;">{{ \Xethron\L4ToString::exception( $exception ) }}</pre></p>
 
 @if ($previous = $exception->getPrevious())
 <p>
@@ -38,4 +38,9 @@
 	<b>Input</b><br>
 	<?php var_dump($input) ?>
 </p>
+@endif
+
+@if (Config::get('smarterror::log-queries'))
+	<p><b>MySQL Queries</b></p>
+	<p><pre style="white-space:pre-wrap;">{{ \Xethron\L4ToString::queryLog() }}</pre></p>
 @endif

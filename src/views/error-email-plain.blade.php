@@ -7,7 +7,7 @@ In {{ $exception->getFile() }} on line {{ $exception->getLine() }}
 
 Stack trace
 ===========
-{{ $exception->getTraceAsString() }}
+{{ \Xethron\L4ToString::exception( $exception ) }}
 
 @if ($previous = $exception->getPrevious())
 Previous exception
@@ -22,4 +22,10 @@ Input
 @foreach($input as $key => $val)
 {{ $key }}: {{ $val }}
 @endforeach
+@endif
+
+@if (Config::get('smarterror::log-queries'))
+MySQL Queries
+=============
+{{ \Xethron\L4ToString::queryLog() }}
 @endif
